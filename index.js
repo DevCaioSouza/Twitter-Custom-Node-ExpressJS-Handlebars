@@ -8,6 +8,16 @@ const app = express();
 
 const conn = require('./db/conn');
 
+// Models
+const Insight = require('./models/insight');
+const User = require('./models/user');
+
+// Import Routes
+const insightsRoutes = require('./routes/insightsRoutes');
+
+// Import Controller
+const InsightController = require('./controllers/insightController');
+
 //template engine
 app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
@@ -57,8 +67,13 @@ app.use((req, res, next) => {
   next();
 });
 
+//Routes
+app.use('/insights', insightsRoutes);
+
+app.get('/', InsightController.showInsights);
+
 conn
-  .sync()
+  .sync({ force: true })
   .then(() => {
     app.listen(3000);
   })
