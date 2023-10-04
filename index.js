@@ -10,7 +10,7 @@ const conn = require('./db/conn');
 
 // Models
 const Insight = require('./models/insight');
-const User = require('./models/user');
+const User = require('./models/User');
 
 // Import Routes
 const insightsRoutes = require('./routes/insightsRoutes');
