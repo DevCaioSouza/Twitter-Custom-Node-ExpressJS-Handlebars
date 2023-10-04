@@ -3,6 +3,6 @@ const User = require('../models/user')
 
 module.exports = class InsightController {
   static async showInsights(req, res){
-    res.render('insights/home')
+    res.render('insights/home') // 'insights' comes from dir views/insights
   }
 }

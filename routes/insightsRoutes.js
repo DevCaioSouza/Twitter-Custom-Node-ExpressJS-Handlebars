@@ -1,5 +1,5 @@
 const express = require('express');
-const InsightController = require('../controllers/insightController');
+const InsightController = require('../controllers/InsightController');
 const router = express.Router();
 
 // controller

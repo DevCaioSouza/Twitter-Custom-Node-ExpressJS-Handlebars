@@ -16,3 +16,4 @@ Insight.belongsTo(User)
 User.hasMany(Insight)
 
 module.exports = Insight;
+  

@@ -14,15 +14,17 @@ const User = require('./models/user');
 
 // Import Routes
 const insightsRoutes = require('./routes/insightsRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 // Import Controller
-const InsightController = require('./controllers/insightController');
+const InsightController = require('./controllers/InsightController');
+const AuthController = require('./controllers/AuthController');
 
 //template engine
 app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
 
-//body parsing
+// Middleware of body parsing and JSON
 app.use(
   express.urlencoded({
     extended: true,
@@ -52,13 +54,13 @@ app.use(
   })
 );
 
-// flash messages
+// flash messages middleware
 app.use(flash());
 
-// public path
+// public path middleware
 app.use(express.static('public'));
 
-// set session to res
+// set session to res middleware
 app.use((req, res, next) => {
   if (req.session.userid) {
     res.locals.session = req.session;
@@ -67,10 +69,15 @@ app.use((req, res, next) => {
   next();
 });
 
-//Routes
+//Routes middleware
+// main routes
 app.use('/insights', insightsRoutes);
-
 app.get('/', InsightController.showInsights);
+
+// auth routes
+app.use('/', authRoutes);
+app.get('/login', AuthController.login);
+app.get('/register', AuthController.register);
 
 conn
   .sync({ force: true })
