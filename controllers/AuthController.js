@@ -4,6 +4,6 @@ module.exports = class AuthController {
   }
 
   static register(req, res){
-    res.render('auth/register')
+    res.render('auth/register') //faz referência a auth/register.handlebars
   }
 }
