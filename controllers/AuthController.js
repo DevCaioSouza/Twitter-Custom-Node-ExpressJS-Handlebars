@@ -20,7 +20,42 @@ module.exports = class AuthController {
       req.flash('message', 'Password does not match. Please try again');
       res.render('auth/register');
 
-      return
+      return;
+    }
+
+    //check if user exists
+    const checkIfUserExists = await User.findOne({ where: { email: email } });
+
+    if (checkIfUserExists) {
+      req.flash('message', 'E-mail is already in use.');
+      res.render('auth/register');
+
+      return;
+    }
+
+    const salt = bcrypt.genSaltSync(10); //defaults to 10 if ommited
+    const hashedPassword = bcrypt.hashSync(password, salt);
+
+    const user = {
+      name,
+      email,
+      password: hashedPassword,
+    };
+
+    try {
+      const createdUser = await User.create(user);
+
+      //inicializar sessão de usuário
+
+      req.session.userid = createdUser.id;
+
+      req.flash('message', 'User successfully registered');
+
+      req.session.save(() => {
+        res.redirect('/');
+      });
+    } catch (err) {
+      console.log(err);
     }
   }
 };

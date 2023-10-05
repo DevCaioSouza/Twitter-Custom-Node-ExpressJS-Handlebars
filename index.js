@@ -80,7 +80,8 @@ app.get('/login', AuthController.login);
 app.get('/register', AuthController.register);
 
 conn
-  .sync({ force: true })
+  // .sync({ force: true })
+  .sync()
   .then(() => {
     app.listen(3000);
   })
