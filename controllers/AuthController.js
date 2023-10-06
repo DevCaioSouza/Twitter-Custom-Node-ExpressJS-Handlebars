@@ -12,6 +12,11 @@ module.exports = class AuthController {
     res.render('auth/register'); //faz referência a auth/register.handlebars
   }
 
+  static logout(req, res) {
+    req.session.destroy();
+    res.redirect('/login');
+  }
+
   static async registerPost(req, res) {
     const { name, email, password, confirmPassword } = req.body;
 
