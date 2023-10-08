@@ -1,5 +1,5 @@
 const Insight = require('../models/insight')
-const User = require('../models/user')
+const User = require('../models/User')
 
 module.exports = class InsightController {
   static async showInsights(req, res){
