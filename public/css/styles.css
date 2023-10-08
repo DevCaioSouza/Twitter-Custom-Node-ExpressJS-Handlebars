@@ -134,3 +134,11 @@ footer span {
   margin: 0 auto 2em;
   max-width: 60%;
 }
+
+/* DASHBOARD STYLING */
+.title-container{
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 0 auto;
+}
