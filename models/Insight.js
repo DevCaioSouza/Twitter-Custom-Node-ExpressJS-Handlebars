@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 const db = require('../db/conn');
 
-const User = require('./User')
+const User = require('./User');
 
 const Insight = db.define('Insight', {
   title: {
@@ -12,8 +12,7 @@ const Insight = db.define('Insight', {
   },
 });
 
-Insight.belongsTo(User)
-User.hasMany(Insight)
+Insight.belongsTo(User);
+User.hasMany(Insight);
 
 module.exports = Insight;
-  

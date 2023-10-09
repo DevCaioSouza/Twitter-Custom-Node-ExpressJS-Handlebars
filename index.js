@@ -79,6 +79,7 @@ app.use('/', authRoutes);
 app.get('/login', AuthController.login);
 app.get('/register', AuthController.register);
 
+
 conn
   // .sync({ force: true })
   .sync()
