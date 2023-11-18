@@ -11,6 +11,10 @@ router.get('/dashboard', checkAuth, InsightController.dashboard);
 router.get('/', InsightController.showInsights);
 router.get('/create', checkAuth, InsightController.createInsight);
 
-router.post('/create', InsightController.insightPost)
+router.post('/create', checkAuth, InsightController.insightPost);
+
+
+
+
 
 module.exports = router;

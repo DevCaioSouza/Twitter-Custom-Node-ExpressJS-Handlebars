@@ -7,7 +7,27 @@ module.exports = class InsightController {
   }
 
   static async dashboard(req, res) {
-    res.render('insights/dashboard');
+    const userId = req.session.userid;
+
+    const user = await User.findOne({
+      where: {
+        id: userId,
+      },
+      include: Insight, //a req já vai trazer todos insights associados a esse usuário
+      plain: true, //para vir só os dados que interessam (p/ fazer o forEach no array)
+    });
+
+    if (!user) {
+      res.redirect('/login');
+    }
+
+    // console.log('User insights : ', user.Insights) //Insights = model no plural
+
+    const insights = user.Insights.map((result) => result.dataValues);
+
+    console.log(insights);
+
+    res.render('insights/dashboard', { insights });
   }
 
   static async createInsight(req, res) {
@@ -19,7 +39,7 @@ module.exports = class InsightController {
 
     const insight = {
       title: req.body.title,
-      UserId: req.session.userid
+      UserId: req.session.userid,
     };
 
     try {

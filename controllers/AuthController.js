@@ -9,8 +9,10 @@ module.exports = class AuthController {
   }
 
   static async validateLogin(req, res) {
+    //enviando dados no corpo da requisição
     const { email, password } = req.body;
 
+    //procurando no banco de dados um elemento com o email enviado na req
     const user = await User.findOne({ where: { email: email } });
 
     if (!user) {
@@ -19,7 +21,7 @@ module.exports = class AuthController {
 
       return;
     }
-    //                              password enviado / password do BD
+                                  //password enviado / password do BD
     const passwordMatch = bcrypt.compareSync(password, user.password);
 
     if (!passwordMatch) {
@@ -30,9 +32,9 @@ module.exports = class AuthController {
     }
 
     if (passwordMatch) {
+      //inicializar sessão de usuário
       try {
-        //inicializar sessão de usuário
-
+        //identificar o usuário na sessão
         req.session.userid = user.id;
 
         req.flash('message', 'Login successful');

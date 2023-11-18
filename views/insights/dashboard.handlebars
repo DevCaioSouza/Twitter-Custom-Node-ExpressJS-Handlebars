@@ -3,5 +3,10 @@
     <h2>Dashboard</h2>
     <a href="/insights/create" class="btn">Create insight</a>
     <h3>Your insights</h3>
+    <ul>
+      {{#each insights}}
+        <li>{{this.title}}</li>
+      {{/each}}
+    </ul>
   </div>
 </div>
