@@ -25,7 +25,7 @@ module.exports = class InsightController {
 
     const insights = user.Insights.map((result) => result.dataValues);
 
-    console.log(insights);
+    console.log('Todos insights: ', insights);
 
     res.render('insights/dashboard', { insights });
   }
@@ -49,6 +49,24 @@ module.exports = class InsightController {
 
       req.session.save(() => {
         res.redirect('/');
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  static async removeInsight(req, res) {
+    const insightId = req.body.id;
+
+    const UserId = req.session.userid;
+
+    try {
+      await Insight.destroy({ where: { id: insightId, UserId: UserId } });
+
+      req.flash('message', 'Insight removed successfully');
+
+      req.session.save(() => {
+        res.redirect('/insights/dashboard');
       });
     } catch (err) {
       console.log(err);
