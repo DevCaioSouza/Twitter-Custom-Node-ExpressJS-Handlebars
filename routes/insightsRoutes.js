@@ -10,11 +10,6 @@ const checkAuth = require('../helpers/auth').checkAuth;
 router.get('/dashboard', checkAuth, InsightController.dashboard);
 router.get('/', InsightController.showInsights);
 router.get('/create', checkAuth, InsightController.createInsight);
-
 router.post('/create', checkAuth, InsightController.insightPost);
-
-
-
-
 
 module.exports = router;
