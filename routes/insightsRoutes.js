@@ -22,4 +22,10 @@ router.post('/create', checkAuth, InsightController.insightPost);
 //deleta o insight selecionado
 router.post('/remove', checkAuth, InsightController.removeInsight);
 
+//editando os insights
+router.get('/edit/:id', checkAuth, InsightController.editInsight)
+
+//atualizando a dashboard com o insight editado
+router.post('/dashboard', checkAuth, InsightController.updateDashboardInsight) // precisamos passar uma req POST para o dashboard, pq estamos enviando dados
+
 module.exports = router;

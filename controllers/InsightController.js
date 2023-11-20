@@ -21,21 +21,14 @@ module.exports = class InsightController {
       res.redirect('/login');
     }
 
-    // const isEmpty = true;
-
-    // if(user.Insight){
-      
-    // }
-
     // console.log('User insights : ', user.Insights) //Insights = model no plural
 
     const insights = user.Insights.map((result) => result.dataValues);
 
     let isEmpty = false;
 
-    if(insights.length === 0){
+    if (insights.length === 0) {
       isEmpty = true;
-      console.log('Agora sim');
     }
 
     console.log('Todos insights: ', insights);
@@ -90,5 +83,45 @@ module.exports = class InsightController {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  static async editInsight(req, res) {
+    const id = req.params.id; //params pois o id está vindo pela URL
+
+    const insight = await Insight.findOne({
+      where: { id: id },
+      raw: true, //Isso formata e "limpa" os dados que são passados, facilita a leitura
+    });
+
+    res.render('insights/edit', { insight });
+
+    console.log('insight sendo passado: ', insight);
+  }
+
+  static async updateDashboardInsight(req, res) {
+    const newText = req.body.title;
+    const newId = req.body.id;
+
+    try {
+      const insight = await Insight.findOne({
+        where: { id: newId },
+      });
+
+      insight.title = newText;
+
+      await insight.save();
+      
+      req.flash('message', 'Insight updated successfully');
+
+      req.session.save(() => {
+        res.redirect('/insights/dashboard');
+      });
+
+      
+    } catch (err) {
+      console.log(err);
+    }
+
+    
   }
 };

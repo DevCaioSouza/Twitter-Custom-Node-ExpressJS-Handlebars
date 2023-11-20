@@ -1,0 +1,13 @@
+<div class="insight-form-container">
+  <a href="/insights/dashboard">Back to dashboard</a>
+  <h2>Edit Insight</h2>
+  <form action="/insights/dashboard" method="POST"> {{! O ACTION CHAMA A ROTA, A ROTA CHAMA O MÉTODO}}
+    <div class="form-control">
+      <label for="title">Edit the selected insight!</label>
+      {{!-- <input type="text" name="title" value="{{insight.dataValues.title}}"> --}}
+      <input type="text" name="title" value="{{insight.title}}">
+      <input type='hidden' name='id' value='{{insight.id}}' />
+    </div>
+    <input type="submit" class="btn" value="Submit">
+  </form>
+</div>
