@@ -21,13 +21,26 @@ module.exports = class InsightController {
       res.redirect('/login');
     }
 
+    // const isEmpty = true;
+
+    // if(user.Insight){
+      
+    // }
+
     // console.log('User insights : ', user.Insights) //Insights = model no plural
 
     const insights = user.Insights.map((result) => result.dataValues);
 
+    let isEmpty = false;
+
+    if(insights.length === 0){
+      isEmpty = true;
+      console.log('Agora sim');
+    }
+
     console.log('Todos insights: ', insights);
 
-    res.render('insights/dashboard', { insights });
+    res.render('insights/dashboard', { insights, isEmpty });
   }
 
   static async createInsight(req, res) {
@@ -43,7 +56,13 @@ module.exports = class InsightController {
     };
 
     try {
-      await Insight.create(insight);
+      if (insight.title !== '') {
+        await Insight.create(insight);
+      } else {
+        req.flash('message', "You can't save an empty insight");
+        res.render('insights/create');
+        return;
+      }
 
       req.flash('message', 'Insight created successfully');
 
