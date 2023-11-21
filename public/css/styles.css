@@ -135,6 +135,19 @@ footer span {
   max-width: 60%;
 }
 
+/* HOME PAGE */
+
+.insights-list ul{
+  list-style: none;
+  font-weight: bold;
+}
+
+.insights-list ul li{
+  color: #f6982d;
+  padding: 12px 0px;
+  font-style: italic;
+}
+
 /* DASHBOARD STYLING */
 .title-container{
   display: flex;

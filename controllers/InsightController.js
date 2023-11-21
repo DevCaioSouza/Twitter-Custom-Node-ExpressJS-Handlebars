@@ -3,7 +3,17 @@ const User = require('../models/User');
 
 module.exports = class InsightController {
   static async showInsights(req, res) {
-    res.render('insights/home'); // 'insights' comes from dir views/insights
+    const allInsights = [];
+
+    const insights = await Insight.findAll();
+
+    for (const insight of insights) {
+      allInsights.push(insight.dataValues.title);
+    }
+
+    console.log('All Insights: ', allInsights);
+
+    res.render('insights/home', { allInsights });
   }
 
   static async dashboard(req, res) {
@@ -110,18 +120,14 @@ module.exports = class InsightController {
       insight.title = newText;
 
       await insight.save();
-      
+
       req.flash('message', 'Insight updated successfully');
 
       req.session.save(() => {
         res.redirect('/insights/dashboard');
       });
-
-      
     } catch (err) {
       console.log(err);
     }
-
-    
   }
 };
