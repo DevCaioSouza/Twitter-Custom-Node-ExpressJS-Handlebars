@@ -6,7 +6,7 @@ MVC architecture based application.
 
 ## Featuring:
 
- - The app was build with the use of NodeJS and Express libraries.
+ - The app was built with the use of NodeJS and Express libraries.
  - Its front-end was made using Handlebars (Template Engine), a library that allows html files to be written inside a backend folder structure. <br>
  - A database written in MySQL, with the addition of the ORM "Sequelize" to serve as an abstraction layer hence providing proper
 communication between the code and the Database. <br>
