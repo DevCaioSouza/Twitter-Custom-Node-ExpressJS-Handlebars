@@ -143,9 +143,17 @@ footer span {
 }
 
 .insights-list ul li{
-  color: #f6982d;
   padding: 12px 0px;
   font-style: italic;
+}
+
+.insights-list ul li span{
+  color: #f6982d;
+}
+
+.insights-list ul li p {
+  font-size: 12px;
+  font-weight: 300;
 }
 
 /* DASHBOARD STYLING */

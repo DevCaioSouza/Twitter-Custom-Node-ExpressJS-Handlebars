@@ -8,7 +8,10 @@
 
       {{#each allInsights}}
 
-        <li>"{{this}}"</li>
+        <li>
+          <span>"{{this.title}}"</span>
+          <p>por: {{this.User.name}}</p>
+        </li>
 
       {{/each}}
 

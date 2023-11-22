@@ -3,13 +3,14 @@ const User = require('../models/User');
 
 module.exports = class InsightController {
   static async showInsights(req, res) {
-    const allInsights = [];
 
-    const insights = await Insight.findAll();
+    const insights = await Insight.findAll({
+      include: User
+    });
 
-    for (const insight of insights) {
-      allInsights.push(insight.dataValues.title);
-    }
+    const allInsights = insights.map(
+      (result) => result.get({plain: true})
+    )
 
     console.log('All Insights: ', allInsights);
 
