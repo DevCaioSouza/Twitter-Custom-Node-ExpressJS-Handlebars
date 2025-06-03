@@ -61,7 +61,7 @@ export default class InsightController {
 
     try {
       if (insight.title !== '') {
-        await create(insight);
+        await Insight.create(insight);
       } else {
         req.flash('message', "You can't save an empty insight");
         res.render('insights/create');

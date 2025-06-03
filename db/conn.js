@@ -1,9 +1,9 @@
 import { Sequelize } from 'sequelize';
 
-const sequelize = new Sequelize('insighter2', 'root', 'Password10', {
+const sequelize = new Sequelize('insighter', 'postgres', 'postgres', {
   host: 'localhost',
-  dialect: 'mysql',
-  port: 6400,
+  dialect: 'postgres',
+  port: 5432,
 });
 
 try {
