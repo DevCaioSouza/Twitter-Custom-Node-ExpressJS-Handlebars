@@ -1,8 +1,8 @@
-const { DataTypes } = require('sequelize');
+import { DataTypes } from 'sequelize'
 
-const db = require('../db/conn');
+import db from '../db/conn.js'
 
-const User = require('./User');
+import User from './User.js'
 
 const Insight = db.define('Insight', {
   title: {
@@ -10,9 +10,9 @@ const Insight = db.define('Insight', {
     allowNull: false,
     require: true,
   },
-});
+})
 
-Insight.belongsTo(User);
-User.hasMany(Insight);
+Insight.belongsTo(User)
+User.hasMany(Insight)
 
-module.exports = Insight;
+export default Insight

@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize');
+import { Sequelize } from 'sequelize';
 
 const sequelize = new Sequelize('insighter2', 'root', 'Password10', {
   host: 'localhost',
@@ -13,4 +13,4 @@ try {
   console.log(`Não foi possível conectar: ${err}`);
 }
 
-module.exports = sequelize;
+export default sequelize;

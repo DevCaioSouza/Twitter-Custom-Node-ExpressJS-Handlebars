@@ -1,6 +1,6 @@
-const { DataTypes } = require('sequelize');
+import { DataTypes } from 'sequelize';
 
-const db = require('../db/conn');
+import db from '../db/conn.js';
 
 const User = db.define('User', {
   name: {
@@ -17,4 +17,4 @@ const User = db.define('User', {
   },
 });
 
-module.exports = User;
+export default User;
