@@ -1,7 +1,7 @@
-const Insight = require('../models/insight');
-const User = require('../models/User');
+import Insight from '../models/Insight.js';
+import User from '../models/User.js';
 
-module.exports = class InsightController {
+export default class InsightController {
   static async showInsights(req, res) {
 
     const insights = await Insight.findAll({
@@ -61,7 +61,7 @@ module.exports = class InsightController {
 
     try {
       if (insight.title !== '') {
-        await Insight.create(insight);
+        await create(insight);
       } else {
         req.flash('message', "You can't save an empty insight");
         res.render('insights/create');
@@ -84,7 +84,7 @@ module.exports = class InsightController {
     const UserId = req.session.userid;
 
     try {
-      await Insight.destroy({ where: { id: insightId, UserId: UserId } });
+      await destroy({ where: { id: insightId, UserId: UserId } });
 
       req.flash('message', 'Insight removed successfully');
 
@@ -99,7 +99,7 @@ module.exports = class InsightController {
   static async editInsight(req, res) {
     const id = req.params.id; //params pois o id está vindo pela URL
 
-    const insight = await Insight.findOne({
+    const insight = await findOne({
       where: { id: id },
       raw: true, //Isso formata e "limpa" os dados que são passados, facilita a leitura
     });
@@ -114,7 +114,7 @@ module.exports = class InsightController {
     const newId = req.body.id;
 
     try {
-      const insight = await Insight.findOne({
+      const insight = await findOne({
         where: { id: newId },
       });
 

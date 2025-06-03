@@ -1,9 +1,13 @@
-const User = require('../models/User');
+// const User = require('../models/User').default;
 
-const bcrypt = require('bcryptjs');
-const flash = require('express-flash');
+// const bcrypt = require('bcryptjs');
+// const flash = require('express-flash');
 
-module.exports = class AuthController {
+import User from "../models/User.js";
+import bcrypt from "bcryptjs/dist/bcrypt.js";
+import flash from "express-flash";
+
+export default class AuthController {
   static login(req, res) {
     res.render('auth/login');
   }

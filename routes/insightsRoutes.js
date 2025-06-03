@@ -1,9 +1,11 @@
-const express = require('express');
-const InsightController = require('../controllers/InsightController');
-const router = express.Router();
+import { Router } from 'express';
+
+import InsightController from '../controllers/InsightController.js';
+
+const router = Router();
 
 //helper
-const checkAuth = require('../helpers/auth').checkAuth;
+import { checkAuth } from '../helpers/auth.js';
 
 // controller
 
@@ -26,6 +28,6 @@ router.post('/remove', checkAuth, InsightController.removeInsight);
 router.get('/edit/:id', checkAuth, InsightController.editInsight)
 
 //atualizando a dashboard com o insight editado
-router.post('/dashboard', checkAuth, InsightController.updateDashboardInsight) // precisamos passar uma req POST para o dashboard, pq estamos enviando dados
+router.post('/dashboard', checkAuth, InsightController.updateDashboardInsight)
 
-module.exports = router;
+export default router;
