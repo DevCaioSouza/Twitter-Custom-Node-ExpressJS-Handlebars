@@ -12,7 +12,7 @@ export default class InsightController {
       (result) => result.get({plain: true})
     )
 
-    console.log('All Insights: ', allInsights);
+    // console.log('All Insights: ', allInsights);
 
     res.render('insights/home', { allInsights });
   }

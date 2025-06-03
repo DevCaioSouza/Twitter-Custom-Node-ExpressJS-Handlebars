@@ -1,8 +1,3 @@
-// const User = require('../models/User').default;
-
-// const bcrypt = require('bcryptjs');
-// const flash = require('express-flash');
-
 import User from "../models/User.js";
 import bcrypt from "bcryptjs/dist/bcrypt.js";
 import flash from "express-flash";
