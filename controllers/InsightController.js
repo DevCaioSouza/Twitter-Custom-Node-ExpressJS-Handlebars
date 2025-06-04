@@ -84,7 +84,7 @@ export default class InsightController {
     const UserId = req.session.userid;
 
     try {
-      await destroy({ where: { id: insightId, UserId: UserId } });
+      await Insight.destroy({ where: { id: insightId, UserId: UserId } });
 
       req.flash('message', 'Insight removed successfully');
 
@@ -99,7 +99,7 @@ export default class InsightController {
   static async editInsight(req, res) {
     const id = req.params.id; //params pois o id está vindo pela URL
 
-    const insight = await findOne({
+    const insight = await Insight.findOne({
       where: { id: id },
       raw: true, //Isso formata e "limpa" os dados que são passados, facilita a leitura
     });
@@ -114,7 +114,7 @@ export default class InsightController {
     const newId = req.body.id;
 
     try {
-      const insight = await findOne({
+      const insight = await Insight.findOne({
         where: { id: newId },
       });
 
