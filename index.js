@@ -7,6 +7,8 @@ import conn from './db/conn.js'
 import path from 'node:path'
 import os from 'node:os'
 
+import Queries from './db/queries.js'
+
 const FileStore = sessionFileStore(session)
 const app = express()
 
@@ -66,15 +68,19 @@ app.use((req, res, next) => {
   next()
 })
 
+// remote calls
+app.get('/', Queries.listAllInsights)
+
+
 //Routes middleware
 // main routes
-app.use('/insights', insightsRoutes)
-app.get('/', InsightController.showInsights)
+// app.use('/insights', insightsRoutes)
+// app.get('/', InsightController.showInsights)
 
 // auth routes
-app.use('/', authRoutes)
-app.get('/login', AuthController.login)
-app.get('/register', AuthController.register)
+// app.use('/', authRoutes)
+// app.get('/login', AuthController.login)
+// app.get('/register', AuthController.register)
 
 conn
   // .sync({ force: true })
