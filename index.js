@@ -70,6 +70,7 @@ app.use((req, res, next) => {
 
 // remote calls
 app.get('/', Queries.listAllInsights)
+app.post('/create', Queries.postInsight)
 
 
 //Routes middleware
