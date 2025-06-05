@@ -8,10 +8,10 @@ export default class AuthController {
   }
 
   static async validateLogin(req, res) {
-    //enviando dados no corpo da requisição
+    //pegando dados enviados pelo corpo da requisição
     const { email, password } = req.body;
 
-    //procurando no banco de dados um elemento com o email enviado na req
+    //procurando no banco de dados um elemento com o email enviado na req pelo frontend
     const user = await User.findOne({ where: { email: email } });
 
     if (!user) {
@@ -20,7 +20,7 @@ export default class AuthController {
 
       return;
     }
-                                  //password enviado / password do BD
+                                  //password recebido / password do BD
     const passwordMatch = bcrypt.compareSync(password, user.password);
 
     if (!passwordMatch) {
@@ -33,7 +33,8 @@ export default class AuthController {
     if (passwordMatch) {
       //inicializar sessão de usuário
       try {
-        //identificar o usuário na sessão
+        //pegar o id do usuário e atribuí-lo ao userid da session
+        //user é o que pegamos na query
         req.session.userid = user.id;
 
         req.flash('message', 'Login successful');
